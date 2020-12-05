@@ -22,8 +22,8 @@ class ProductdataApplicationTests {
 	@Test
 	public void testCreate() {
 		Product product = new Product();
-		product.setId(2);
-		product.setName("IWatch");
+		product.setId(1);
+		product.setName("Iwatch");
 		product.setDesc("from samsung");
 		product.setPrice(1500d);
 		
@@ -48,11 +48,6 @@ class ProductdataApplicationTests {
 		System.out.println(repository.count());
 	}
 	
-	@Test
-	public void testFindByName() {
-		List<Product> products = repository.findByName("Iphone");
-		products.forEach(p -> System.out.println(p.getPrice()));
-	}
 	
 	@Test
 	public void testDelete() {
@@ -63,4 +58,46 @@ class ProductdataApplicationTests {
 		
 	}
 
+	@Test
+	public void testFindByName() {
+		List<Product> products = repository.findByName("Iwatch");
+		products.forEach(p -> System.out.println(p.getPrice()));
+	}
+	
+	@Test
+	public void testFindByNameAndDesc() {
+		List<Product> products = repository.findByNameAndDesc("Iwatch", "from samsung");
+		products.forEach(p -> System.out.println(p.getPrice()));
+	}
+	
+	@Test
+	public void testFindByPriceGreaterThan() {
+		List<Product> products = repository.findByPriceGreaterThan(900d);
+		products.forEach(p -> System.out.println(p.getName()));
+	}
+	
+	@Test
+	public void testfindByDescContains() {
+		List<Product> products = repository.findByDescContains("sung");
+		products.forEach(p -> System.out.println(p.getName()));
+	}
+	
+	@Test
+	public void testfindByPriceBetween() {
+		List<Product> products = repository.findByPriceBetween(1400d,1600d);
+		products.forEach(p -> System.out.println(p.getName()));
+	}
+	
+	@Test
+	public void testfindByDescLike() {
+		List<Product> products = repository.findByDescLike("%om%");
+		products.forEach(p -> System.out.println(p.getName()));
+	}
+	
+	@Test
+	public void testfindByIdIn() {
+		int sayilar [] = {2,3};
+		List<Product> products = repository.findByIdIn(sayilar);
+		products.forEach(p -> System.out.println(p.getName()));
+	}
 }
